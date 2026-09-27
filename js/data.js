@@ -135,8 +135,8 @@ const PORTFOLIO_DATA = {
       },
       {
         name: "GitHub",
-        url: "https://github.com/ahamedmuflih",
-        handle: "ahamedmuflih",
+        url: "https://github.com/muflihmufu",
+        handle: "muflihmufu",
         icon: "github"
       }
     ],
