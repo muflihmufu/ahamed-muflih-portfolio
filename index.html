@@ -60,11 +60,6 @@
         </ul>
 
         <div class="nav-right-actions">
-          <!-- Audio Synthesizer Toggle -->
-          <button class="btn-pill btn-pill-secondary" id="sound-toggle-btn" aria-label="Toggle Sound Effects" title="Activate Audio FX" style="padding: 8px 16px; font-size: 0.76rem;">
-            <span>SFX</span>
-          </button>
-
           <!-- Contact Pill Button -->
           <a href="#contact" class="btn-pill btn-pill-primary">
             <span>CONTACT</span>
@@ -342,23 +337,21 @@
           <div class="dual-device-editorial">
             <div>
               <span class="mono-tag" style="margin-bottom: 8px; display: inline-block;">FEATURED CASE STUDY</span>
-              <h3 style="font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 14px;">
-                AETHERIA STUDIO — SPATIAL ARCHITECTURE
-              </h3>
-              <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 24px;">
-                A bespoke architectural portfolio website celebrating negative space, responsive baseline grids, and intuitive dual-viewport interactions.
+              <h3 class="case-title">RESPONSIVE ARCHITECTURAL PORTFOLIO</h3>
+              <p class="section-subtitle-detail">
+                A portfolio website built with responsive grids, fluid typography, and dual-viewport interactions across desktop and mobile.
               </p>
               <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">
-                <span class="mono-tag" style="color: #fff; background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 4px;">Web Design</span>
-                <span class="mono-tag" style="color: #fff; background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 4px;">UI/UX</span>
-                <span class="mono-tag" style="color: #fff; background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 4px;">Responsive</span>
+                <span class="case-tag">Web Design</span>
+                <span class="case-tag">UI/UX</span>
+                <span class="case-tag">Responsive</span>
               </div>
               <button class="btn-pill btn-pill-primary" onclick="openCaseStudyModal('aetheria-studio')">
                 <span>VIEW CASE STUDY →</span>
               </button>
             </div>
 
-            <div style="position: relative; min-height: 340px; display: flex; align-items: center; justify-content: center;">
+            <div style="position: relative; min-height: 280px; display: flex; align-items: center; justify-content: center;">
               <!-- Laptop Mockup -->
               <div class="mockup-laptop">
                 <div class="laptop-camera-bar"><div class="laptop-camera"></div></div>
@@ -406,10 +399,10 @@
             <div class="split-screen-container" id="split-screen-container">
               <!-- Left Side: UI Design View -->
               <div class="split-side-design">
-                <div style="max-width: 500px; padding: 30px; border-radius: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);">
+                <div style="max-width: 500px; padding: 24px; border-radius: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);">
                   <span class="mono-tag" style="margin-bottom: 8px; display: inline-block;">FIGMA / DESIGN</span>
-                  <h3 style="font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 10px;">EXPERIENCES CRAFTED WITH EMOTION</h3>
-                  <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 18px;">High-contrast typography, interactive micro-states, and fluid layouts.</p>
+                  <h3 class="case-title" style="font-size: clamp(1.4rem, 3vw, 2rem);">LAYOUT & VISUAL DESIGN</h3>
+                  <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 18px;">Typography, spacing, micro-interactions, and responsive layouts.</p>
                   <button class="btn-pill btn-pill-primary" style="padding: 8px 18px; font-size: 0.8rem;">GET STARTED</button>
                 </div>
               </div>
@@ -423,7 +416,7 @@
                   &nbsp;&nbsp;<span style="color: #f43f5e;">return</span> (<br>
                   &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span style="color: #60a5fa;">section</span> <span style="color: #fbbf24;">className</span>=<span style="color: #34d399;">"hero-editorial"</span>&gt;<br>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span style="color: #60a5fa;">h1</span> <span style="color: #fbbf24;">className</span>=<span style="color: #34d399;">"font-display"</span>&gt;<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPERIENCES CRAFTED WITH EMOTION<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAYOUT & VISUAL DESIGN<br>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span style="color: #60a5fa;">h1</span>&gt;<br>
                   &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span style="color: #60a5fa;">section</span>&gt;<br>
                   &nbsp;&nbsp;);<br>
@@ -439,14 +432,14 @@
               <!-- Live Interactive Layer -->
               <div class="split-live-preview-layer" id="split-live-layer">
                 <div style="padding: 12px 20px; background: rgba(0,0,0,0.5); border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.75rem;">
-                  <span style="color: #fff;">● LIVE RUNTIME ACTIVE</span>
-                  <span style="color: var(--text-dim);">https://muflik-live.experience</span>
+                  <span style="color: #fff;">● LIVE PREVIEW</span>
+                  <span style="color: var(--text-dim);">localhost:3000</span>
                 </div>
                 <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 30px;">
-                  <h3 style="font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 12px;">CRAFTED AT THE INTERSECTION OF CODE & VISUALS</h3>
-                  <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 540px; margin-bottom: 20px;">Try clicking to trigger real-time DOM states!</p>
-                  <button class="btn-pill btn-pill-primary" onclick="window.playSynthTone(800, 'sine', 0.2); alert('Live Interactive Button Clicked! Real-time code verified.');">
-                    TEST INTERACTION
+                  <h3 class="case-title" style="font-size: clamp(1.4rem, 3vw, 2rem);">DESIGN TO CODE, LIVE</h3>
+                  <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 540px; margin-bottom: 20px;">Interactive preview of the built component running in the browser.</p>
+                  <button class="btn-pill btn-pill-primary" onclick="window.playSynthTone && window.playSynthTone(800, 'sine', 0.2);">
+                    TEST BUTTON
                   </button>
                 </div>
               </div>
@@ -466,26 +459,26 @@
             Rooted in computer graphics, spatial geometry, and cinematic visual effects.
           </p>
 
-          <div style="border-radius: var(--radius-lg); background: var(--canvas-surface); border: 1px solid var(--border-medium); overflow: hidden; padding: 40px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center;">
+          <div class="threed-showcase-card">
             <div>
               <span class="mono-tag" style="margin-bottom: 8px; display: inline-block;">3D ART & GAME ASSET</span>
-              <h3 style="font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 14px;">MECHA VALKYRIE — HARD SURFACE</h3>
-              <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 24px;">
-                Production-ready game-art asset modeled with precision quad-topology in Maya, sculpted in ZBrush, and textured with realistic PBR weathering in Substance 3D.
+              <h3 class="case-title">HARD-SURFACE MODELING & TEXTURING</h3>
+              <p class="section-subtitle-detail">
+                Game-ready assets built with clean quad topology in Maya, sculpted in ZBrush, and textured with PBR materials in Substance 3D Painter.
               </p>
               <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;">
-                <span class="mono-tag" style="background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 4px;">3D MODELLING</span>
-                <span class="mono-tag" style="background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 4px;">TEXTURING</span>
-                <span class="mono-tag" style="background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 4px;">LIGHTING</span>
-                <span class="mono-tag" style="background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 4px;">VFX COMPOSITING</span>
+                <span class="case-tag">MODELING</span>
+                <span class="case-tag">TEXTURING</span>
+                <span class="case-tag">LIGHTING</span>
+                <span class="case-tag">COMPOSITING</span>
               </div>
               <button class="btn-pill btn-pill-primary" onclick="openCaseStudyModal('mecha-valkyrie')">
-                <span>VIEW 3D CASE STUDY →</span>
+                <span>VIEW CASE STUDY →</span>
               </button>
             </div>
 
-            <div style="border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 16 / 10; background: #000;">
-              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="3D Model Render" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+            <div class="threed-img-box">
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="3D Render" loading="lazy">
             </div>
           </div>
         </div>
@@ -613,12 +606,12 @@
           <form class="contact-form" id="portfolio-contact-form">
             <div class="form-group">
               <label for="form-name" class="form-label">YOUR NAME</label>
-              <input type="text" id="form-name" class="form-input" placeholder="e.g. Elena Rostova" required>
+              <input type="text" id="form-name" class="form-input" placeholder="Your name" required>
             </div>
 
             <div class="form-group">
               <label for="form-email" class="form-label">YOUR EMAIL ADDRESS</label>
-              <input type="email" id="form-email" class="form-input" placeholder="e.g. elena@studio.com" required>
+              <input type="email" id="form-email" class="form-input" placeholder="your@email.com" required>
             </div>
 
             <div class="form-group">
@@ -645,7 +638,7 @@
           </div>
         </div>
 
-        <div style="text-align: right;">
+        <div>
           <div style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; color: #fff;">
             DESIGN. BUILD. CREATE.
           </div>

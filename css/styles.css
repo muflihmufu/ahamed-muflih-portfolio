@@ -222,6 +222,33 @@ h1, h2, h3, h4, .font-display {
   line-height: 1.6;
 }
 
+.section-subtitle-detail {
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.case-tag {
+  display: inline-block;
+  color: #fff;
+  background: rgba(255,255,255,0.06);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.case-title {
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
 /* Rounded Pill Button Style */
 .btn-pill {
   display: inline-flex;
@@ -341,6 +368,12 @@ h1, h2, h3, h4, .font-display {
   z-index: 100;
 }
 
+@media (max-width: 768px) {
+  .minimal-nav {
+    padding: 20px 0 16px 0;
+  }
+}
+
 .brand-logo {
   font-family: var(--font-display);
   font-size: 1.5rem;
@@ -415,6 +448,16 @@ h1, h2, h3, h4, .font-display {
   padding: 60px 0 80px 0;
   position: relative;
   overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .hero-editorial {
+    padding: 40px 0 50px 0;
+  }
+  .hero-short-intro {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
 }
 
 #hero-canvas {
@@ -623,6 +666,21 @@ h1, h2, h3, h4, .font-display {
   background: #ffffff;
 }
 
+@media (max-width: 768px) {
+  .trust-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 20px 0;
+  }
+  .trust-strip-item {
+    font-size: 0.72rem;
+  }
+  .trust-strip-dot {
+    display: none;
+  }
+}
+
 /* --- EDITORIAL ABOUT SECTION --- */
 .editorial-about-grid {
   display: grid;
@@ -667,6 +725,12 @@ h1, h2, h3, h4, .font-display {
   border-bottom: 1px solid var(--border-subtle);
   text-align: center;
   background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+}
+
+@media (max-width: 768px) {
+  .signature-statement-section {
+    padding: 60px 0;
+  }
 }
 
 .signature-statement-large {
@@ -938,6 +1002,13 @@ h1, h2, h3, h4, .font-display {
   gap: 20px;
 }
 
+@media (max-width: 768px) {
+  .featured-info-box {
+    padding: 24px;
+    flex-direction: column;
+  }
+}
+
 /* Alternating 2-Column Projects */
 .projects-two-col {
   display: grid;
@@ -1061,6 +1132,39 @@ h1, h2, h3, h4, .font-display {
   }
 }
 
+.threed-showcase-card {
+  border-radius: var(--radius-lg);
+  background: var(--canvas-surface);
+  border: 1px solid var(--border-medium);
+  overflow: hidden;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .threed-showcase-card {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 24px;
+  }
+}
+
+.threed-img-box {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: #000;
+}
+
+.threed-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .mockup-laptop {
   width: 90%;
   border-radius: 12px 12px 0 0;
@@ -1156,6 +1260,19 @@ h1, h2, h3, h4, .font-display {
   gap: 12px;
 }
 
+@media (max-width: 600px) {
+  .split-screen-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px 16px;
+  }
+  .split-stage-switcher {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+}
+
 .split-stage-switcher {
   display: flex;
   align-items: center;
@@ -1182,9 +1299,22 @@ h1, h2, h3, h4, .font-display {
 
 .split-screen-container {
   position: relative;
-  height: 500px;
+  height: 420px;
   width: 100%;
   overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .split-screen-container {
+    height: 320px;
+  }
+  .split-side-design {
+    padding: 20px;
+  }
+  .code-editor-content {
+    padding: 16px;
+    font-size: 0.72rem;
+  }
 }
 
 .split-side-design {
@@ -1331,6 +1461,16 @@ h1, h2, h3, h4, .font-display {
   transform: translateY(-2px);
 }
 
+@media (max-width: 480px) {
+  .toolbox-pill-item {
+    padding: 10px 18px;
+    font-size: 1rem;
+  }
+  .toolbox-editorial-grid {
+    gap: 10px;
+  }
+}
+
 /* --- CONTACT SECTION --- */
 .contact-editorial-box {
   padding: 70px 0;
@@ -1463,6 +1603,15 @@ h1, h2, h3, h4, .font-display {
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9);
   padding: 40px;
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 12px;
+  }
+  .modal-container {
+    padding: 20px;
+  }
 }
 
 .modal-close-btn {
