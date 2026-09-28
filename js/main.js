@@ -241,54 +241,129 @@ document.addEventListener('DOMContentLoaded', () => {
   if (splitContainer && codeSide && splitDivider) {
     let isDragging = false;
 
-    function updateSplitPosition(clientX) {
+    function setSplitPosition(clientX, animated = false) {
+      if (animated) {
+        splitContainer.classList.add('split-animated');
+      } else {
+        splitContainer.classList.remove('split-animated');
+      }
+
       const rect = splitContainer.getBoundingClientRect();
       let offsetX = clientX - rect.left;
-      if (offsetX < 30) offsetX = 30;
-      if (offsetX > rect.width - 30) offsetX = rect.width - 30;
+      let percent = (offsetX / rect.width) * 100;
+      if (percent < 0) percent = 0;
+      if (percent > 100) percent = 100;
 
-      const percent = (offsetX / rect.width) * 100;
-      splitDivider.style.left = `${percent}%`;
-      codeSide.style.width = `${100 - percent}%`;
+      splitDivider.style.left = `${percent.toFixed(2)}%`;
+      codeSide.style.width = `${(100 - percent).toFixed(2)}%`;
     }
 
-    splitDivider.addEventListener('mousedown', () => { isDragging = true; });
-    window.addEventListener('mouseup', () => { isDragging = false; });
-    window.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      updateSplitPosition(e.clientX);
-    });
+    function setActiveTab(stageName) {
+      stageTabs.forEach(btn => {
+        if (btn.dataset.stage === stageName) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
 
-    // Touch support for mobile screens
-    splitDivider.addEventListener('touchstart', () => { isDragging = true; }, { passive: true });
-    window.addEventListener('touchend', () => { isDragging = false; });
-    window.addEventListener('touchmove', (e) => {
-      if (!isDragging || e.touches.length === 0) return;
-      updateSplitPosition(e.touches[0].clientX);
+    function applyStage(stage) {
+      setActiveTab(stage);
+
+      if (stage === 'design') {
+        liveRuntime?.classList.remove('active');
+        splitContainer.classList.add('split-animated');
+        splitDivider.style.left = '100%';
+        codeSide.style.width = '0%';
+        showToast('Viewing Design Layout');
+      } else if (stage === 'code') {
+        liveRuntime?.classList.remove('active');
+        splitContainer.classList.add('split-animated');
+        splitDivider.style.left = '0%';
+        codeSide.style.width = '100%';
+        showToast('Viewing Frontend Code');
+      } else if (stage === 'split') {
+        liveRuntime?.classList.remove('active');
+        splitContainer.classList.add('split-animated');
+        splitDivider.style.left = '50%';
+        codeSide.style.width = '50%';
+        showToast('Drag divider to compare Design vs Code');
+      } else if (stage === 'live') {
+        liveRuntime?.classList.add('active');
+        showToast('Interactive Live Runtime Active');
+      }
+    }
+
+    // Pointer Events for desktop & mobile
+    function startDrag(e) {
+      // Don't drag if clicking interactive controls inside live view or buttons
+      if (e.target.closest('button') || e.target.closest('input')) return;
+
+      isDragging = true;
+      splitContainer.classList.add('is-dragging');
+      splitContainer.classList.remove('split-animated');
+      liveRuntime?.classList.remove('active');
+      setActiveTab('split');
+
+      try {
+        splitDivider.setPointerCapture(e.pointerId);
+      } catch (err) {}
+
+      setSplitPosition(e.clientX, false);
+    }
+
+    function moveDrag(e) {
+      if (!isDragging) return;
+      e.preventDefault();
+      setSplitPosition(e.clientX, false);
+    }
+
+    function stopDrag(e) {
+      if (!isDragging) return;
+      isDragging = false;
+      splitContainer.classList.remove('is-dragging');
+      try {
+        splitDivider.releasePointerCapture(e.pointerId);
+      } catch (err) {}
+    }
+
+    // Bind pointer events on divider AND container
+    splitDivider.addEventListener('pointerdown', startDrag);
+    splitContainer.addEventListener('pointerdown', startDrag);
+    window.addEventListener('pointermove', moveDrag);
+    window.addEventListener('pointerup', stopDrag);
+    window.addEventListener('pointercancel', stopDrag);
+
+    // Fallback touch events for older mobile browsers
+    splitContainer.addEventListener('touchstart', (e) => {
+      if (e.touches.length > 0) {
+        isDragging = true;
+        splitContainer.classList.add('is-dragging');
+        splitContainer.classList.remove('split-animated');
+        liveRuntime?.classList.remove('active');
+        setActiveTab('split');
+        setSplitPosition(e.touches[0].clientX, false);
+      }
     }, { passive: true });
 
-    // Stage Tab Switcher
-    stageTabs.forEach(btn => {
-      btn.addEventListener('click', () => {
-        stageTabs.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const stage = btn.dataset.stage;
+    window.addEventListener('touchmove', (e) => {
+      if (!isDragging || e.touches.length === 0) return;
+      setSplitPosition(e.touches[0].clientX, false);
+    }, { passive: true });
 
-        if (stage === 'design') {
-          liveRuntime?.classList.remove('active');
-          splitDivider.style.left = '98%';
-          codeSide.style.width = '2%';
-        } else if (stage === 'code') {
-          liveRuntime?.classList.remove('active');
-          splitDivider.style.left = '4%';
-          codeSide.style.width = '96%';
-        } else if (stage === 'split') {
-          liveRuntime?.classList.remove('active');
-          splitDivider.style.left = '50%';
-          codeSide.style.width = '50%';
-        } else if (stage === 'live') {
-          liveRuntime?.classList.add('active');
-        }
+    window.addEventListener('touchend', () => {
+      isDragging = false;
+      splitContainer.classList.remove('is-dragging');
+    });
+
+    // 4-Stage Tabs Click Handlers
+    stageTabs.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const stage = btn.dataset.stage;
+        applyStage(stage);
       });
     });
   }
@@ -302,12 +377,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const email = document.getElementById('contact-email')?.value || '';
       const message = document.getElementById('contact-message')?.value || '';
 
-      showToast(`Thank you, ${name}! Generating email...`);
+      const recipientEmail = "muflihkambar@gmail.com";
+      showToast(`Thank you, ${name}! Preparing email to ${recipientEmail}...`);
 
       setTimeout(() => {
-        const mailtoUrl = `mailto:${data.contact.email}?subject=${encodeURIComponent(`Portfolio Inquiry from ${name}`)}&body=${encodeURIComponent(`From: ${name} (${email})\n\nMessage:\n${message}`)}`;
+        const mailtoUrl = `mailto:${recipientEmail}?subject=${encodeURIComponent(`Portfolio Inquiry from ${name}`)}&body=${encodeURIComponent(`From: ${name} (${email})\n\nMessage:\n${message}`)}`;
         window.location.href = mailtoUrl;
-      }, 600);
+      }, 700);
 
       contactForm.reset();
     });

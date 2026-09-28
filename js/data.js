@@ -104,7 +104,7 @@ const PORTFOLIO_DATA = {
 
   // Contact & Social Links
   contact: {
-    email: "ahamedmuflih.creatives@gmail.com",
+    email: "muflihkambar@gmail.com",
     location: "Bangalore, India",
     availability: "Open to Selected Executive & Creative Collaborations",
     pkmcoUrl: "https://www.pkmgroup.co/pkm-construction",

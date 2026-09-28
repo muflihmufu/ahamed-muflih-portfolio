@@ -26,7 +26,9 @@
   <header class="top-header-strip">
     <div class="container top-header-inner">
       <div class="header-brand-tag">
-        <span class="icon-asterisk">✳</span>
+        <span class="icon-asterisk" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14.6 9.4L24 12L14.6 14.6L12 24L9.4 14.6L0 12L9.4 9.4L12 0Z"/></svg>
+        </span>
         <span>DIRECTOR & MULTIDISCIPLINARY CREATIVE</span>
       </div>
 
@@ -82,7 +84,7 @@
           <div class="circular-badge-stamp" title="Open for projects">
             <div class="badge-stamp-inner">
               <span class="badge-stamp-title">OPEN FOR<br>PROJECTS</span>
-              <span class="badge-stamp-sub">✦ 2026 ✦</span>
+              <span class="badge-stamp-sub">EST. 2026</span>
             </div>
           </div>
         </div>
@@ -201,7 +203,11 @@
         <!-- Column 3: 4 Feature Icon Items -->
         <div class="skills-features-col">
           <div class="skill-feature-item">
-            <div class="feature-circle-icon">🖥️</div>
+            <div class="feature-circle-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
             <div>
               <div class="feature-title">USER-CENTERED DESIGN</div>
               <p class="feature-desc">Focus on creating seamless, accessible, and meaningful interactions for every audience.</p>
@@ -209,7 +215,11 @@
           </div>
 
           <div class="skill-feature-item">
-            <div class="feature-circle-icon">💻</div>
+            <div class="feature-circle-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </div>
             <div>
               <div class="feature-title">CLEAN & MODERN CODE</div>
               <p class="feature-desc">High-quality, scalable frontend architecture built with performant modern standards.</p>
@@ -217,7 +227,11 @@
           </div>
 
           <div class="skill-feature-item">
-            <div class="feature-circle-icon">📱</div>
+            <div class="feature-circle-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+              </svg>
+            </div>
             <div>
               <div class="feature-title">FULLY RESPONSIVE</div>
               <p class="feature-desc">Interfaces engineered to adapt fluidly from mobile phones to ultra-wide displays.</p>
@@ -225,7 +239,11 @@
           </div>
 
           <div class="skill-feature-item">
-            <div class="feature-circle-icon">⚓</div>
+            <div class="feature-circle-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+              </svg>
+            </div>
             <div>
               <div class="feature-title">STRATEGIC GOVERNANCE</div>
               <p class="feature-desc">Executive direction driving complex marine & coastal infrastructure projects.</p>
@@ -289,7 +307,9 @@
       <div class="interactive-showcase-box">
         <div class="split-header-bar">
           <div class="header-brand-tag">
-            <span class="icon-asterisk">✦</span>
+            <span class="icon-asterisk" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14.6 9.4L24 12L14.6 14.6L12 24L9.4 14.6L0 12L9.4 9.4L12 0Z"/></svg>
+            </span>
             <span>COMPONENT TRANSFORMER</span>
           </div>
 
@@ -297,7 +317,7 @@
             <button class="stage-tab-btn" data-stage="design">1. DESIGN</button>
             <button class="stage-tab-btn active" data-stage="split">SPLIT SLIDER</button>
             <button class="stage-tab-btn" data-stage="code">2. CODE</button>
-            <button class="stage-tab-btn" data-stage="live">3. LIVE SITE ⚡</button>
+            <button class="stage-tab-btn" data-stage="live">3. LIVE PREVIEW</button>
           </div>
         </div>
 
@@ -335,16 +355,27 @@
 
           <!-- Live Preview Runtime Layer -->
           <div class="split-live-runtime" id="split-live-runtime">
-            <div style="padding: 10px 18px; background: var(--bg-subtle); border-bottom: 1px solid var(--border-color); font-family: var(--font-mono); font-size: 0.72rem; display: flex; justify-content: space-between;">
-              <span style="color: var(--accent-terracotta);">● LIVE RUNTIME ACTIVE</span>
-              <span style="color: var(--text-muted);">localhost:3000</span>
+            <div style="padding: 10px 18px; background: var(--bg-subtle); border-bottom: 1px solid var(--border-color); font-family: var(--font-mono); font-size: 0.72rem; display: flex; justify-content: space-between; align-items: center;">
+              <span style="color: var(--accent-terracotta); font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+                <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--accent-terracotta); display: inline-block;"></span>
+                LIVE COMPONENT RUNTIME
+              </span>
+              <span style="color: var(--text-muted);">localhost:3000/interactive</span>
             </div>
-            <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px;">
-              <h3 style="font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 8px;">CRAFTED AT THE INTERSECTION OF DESIGN & CODE</h3>
-              <p style="color: var(--text-secondary); font-size: 0.92rem; max-width: 480px; margin-bottom: 18px;">Click below to test real-time component feedback.</p>
-              <button class="btn-editorial-primary" onclick="showToast('Live component active!');">
-                TEST INTERACTION
-              </button>
+            <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px; gap: 14px;">
+              <div style="padding: 22px 26px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: var(--radius-md); max-width: 420px; width: 100%;">
+                <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-terracotta); font-weight: 700; margin-bottom: 6px; text-transform: uppercase;">REAL-TIME REACTIVE DEMO</div>
+                <h4 style="font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 14px;">Interactive Live Buttons</h4>
+                <div style="display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap;">
+                  <button id="demo-counter-btn" class="btn-editorial-primary" style="padding: 8px 18px; font-size: 0.75rem;" onclick="let c = parseInt(this.dataset.count || '0') + 1; this.dataset.count = c; this.innerText = 'Clicks: ' + c; showToast('State updated! Total clicks: ' + c);">
+                    Clicks: 0
+                  </button>
+                  <button class="btn-editorial-secondary" style="padding: 8px 16px; font-size: 0.75rem;" onclick="showToast('Reactive button triggered!');">
+                    Trigger Feedback
+                  </button>
+                </div>
+              </div>
+              <p style="font-size: 0.82rem; color: var(--text-muted);">Full client-side DOM interactivity running in the browser.</p>
             </div>
           </div>
         </div>
@@ -433,28 +464,38 @@
           </p>
 
           <div class="footer-channels-list">
-            <a href="mailto:ahamedmuflih.creatives@gmail.com" class="channel-link-row">
-              <span class="channel-icon-pill">✉</span>
-              <span>ahamedmuflih.creatives@gmail.com</span>
+            <a href="mailto:muflihkambar@gmail.com" class="channel-link-row">
+              <span class="channel-icon-pill" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+              <span>muflihkambar@gmail.com</span>
             </a>
 
             <a href="https://www.linkedin.com/in/ahamed-muflih" target="_blank" rel="noopener noreferrer" class="channel-link-row">
-              <span class="channel-icon-pill">in</span>
+              <span class="channel-icon-pill" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </span>
               <span>linkedin.com/in/ahamed-muflih</span>
             </a>
 
             <a href="https://www.instagram.com/muflih.creatives" target="_blank" rel="noopener noreferrer" class="channel-link-row">
-              <span class="channel-icon-pill">📷</span>
+              <span class="channel-icon-pill" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </span>
               <span>@muflih.creatives</span>
             </a>
 
             <a href="https://www.behance.net/ahamedmuflih" target="_blank" rel="noopener noreferrer" class="channel-link-row">
-              <span class="channel-icon-pill">🎨</span>
+              <span class="channel-icon-pill" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-4.726 3-3.159 0-5.5-2.222-5.5-5.5 0-3.14 2.308-5.5 5.5-5.5 3.336 0 5.167 2.457 4.908 5.75h-7.854c.059 1.545 1.116 2.656 2.766 2.656 1.488 0 2.227-.798 2.618-1.406h2.288zm-7.672-3.75h5.184c-.066-1.282-.871-2.125-2.451-2.125-1.558 0-2.529.832-2.733 2.125zm-9.054 6.75h-7v-14h6.848c2.479 0 4.152.684 4.152 3.018 0 1.292-.703 2.217-1.847 2.646 1.583.411 2.347 1.637 2.347 3.238 0 2.801-2.028 5.098-4.5 5.098zm-4-8.5h3.407c1.332 0 2.093-.574 2.093-1.631 0-1.018-.744-1.619-2.093-1.619h-3.407v3.25zm0 6h3.64c1.472 0 2.36-.677 2.36-1.821 0-1.229-.92-1.929-2.433-1.929h-3.567v3.75z"/></svg>
+              </span>
               <span>behance.net/ahamedmuflih</span>
             </a>
 
             <a href="https://github.com/muflihmufu" target="_blank" rel="noopener noreferrer" class="channel-link-row">
-              <span class="channel-icon-pill">🐙</span>
+              <span class="channel-icon-pill" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              </span>
               <span>github.com/muflihmufu</span>
             </a>
           </div>
@@ -505,7 +546,9 @@
        ======================================================== -->
   <div class="modal-overlay" id="case-study-modal" role="dialog" aria-modal="true" aria-label="Case Study Modal">
     <div class="modal-container">
-      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">✕</button>
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
       <div id="modal-case-study-body">
         <!-- Injected dynamically by JS -->
       </div>
