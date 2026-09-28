@@ -147,10 +147,17 @@ button {
 .top-header-strip {
   width: 100%;
   padding: 16px 0;
+  border-top: none;
   border-bottom: 1px solid var(--border-color);
   background: var(--bg-main);
   position: relative;
   z-index: 100;
+}
+
+@media (max-width: 768px) {
+  .top-header-strip {
+    display: none;
+  }
 }
 
 .top-header-inner {
@@ -973,6 +980,27 @@ button {
   background: var(--accent-terracotta);
   color: var(--text-white);
   box-shadow: 0 2px 8px rgba(200, 90, 50, 0.3);
+}
+
+@media (max-width: 600px) {
+  .split-header-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px 14px;
+    gap: 10px;
+  }
+  .split-stage-tabs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+  .stage-tab-btn {
+    padding: 8px 6px;
+    font-size: 0.68rem;
+    text-align: center;
+    white-space: nowrap;
+  }
 }
 
 .split-viewport-wrapper {
