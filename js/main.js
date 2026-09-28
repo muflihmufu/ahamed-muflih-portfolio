@@ -235,135 +235,73 @@ document.addEventListener('DOMContentLoaded', () => {
   const splitContainer = document.getElementById('split-viewport-wrapper');
   const codeSide = document.getElementById('split-layer-code');
   const splitDivider = document.getElementById('split-drag-divider');
+  const rangeSlider = document.getElementById('split-range-slider');
   const stageTabs = document.querySelectorAll('.stage-tab-btn');
   const liveRuntime = document.getElementById('split-live-runtime');
 
-  if (splitContainer && codeSide && splitDivider) {
-    let isDragging = false;
+  function updateVisualSplit(percent) {
+    if (!splitDivider || !codeSide) return;
+    const clamped = Math.max(0, Math.min(100, parseFloat(percent)));
+    splitDivider.style.left = `${clamped}%`;
+    codeSide.style.width = `${100 - clamped}%`;
+    if (rangeSlider) rangeSlider.value = clamped;
+  }
 
-    function setSplitPosition(clientX, animated = false) {
-      if (animated) {
-        splitContainer.classList.add('split-animated');
+  function setActiveTab(stageName) {
+    if (!stageTabs) return;
+    stageTabs.forEach(btn => {
+      if (btn.dataset.stage === stageName) {
+        btn.classList.add('active');
       } else {
-        splitContainer.classList.remove('split-animated');
+        btn.classList.remove('active');
       }
-
-      const rect = splitContainer.getBoundingClientRect();
-      let offsetX = clientX - rect.left;
-      let percent = (offsetX / rect.width) * 100;
-      if (percent < 0) percent = 0;
-      if (percent > 100) percent = 100;
-
-      splitDivider.style.left = `${percent.toFixed(2)}%`;
-      codeSide.style.width = `${(100 - percent).toFixed(2)}%`;
-    }
-
-    function setActiveTab(stageName) {
-      stageTabs.forEach(btn => {
-        if (btn.dataset.stage === stageName) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
-    }
-
-    function applyStage(stage) {
-      setActiveTab(stage);
-
-      if (stage === 'design') {
-        liveRuntime?.classList.remove('active');
-        splitContainer.classList.add('split-animated');
-        splitDivider.style.left = '100%';
-        codeSide.style.width = '0%';
-        showToast('Viewing Design Layout');
-      } else if (stage === 'code') {
-        liveRuntime?.classList.remove('active');
-        splitContainer.classList.add('split-animated');
-        splitDivider.style.left = '0%';
-        codeSide.style.width = '100%';
-        showToast('Viewing Frontend Code');
-      } else if (stage === 'split') {
-        liveRuntime?.classList.remove('active');
-        splitContainer.classList.add('split-animated');
-        splitDivider.style.left = '50%';
-        codeSide.style.width = '50%';
-        showToast('Drag divider to compare Design vs Code');
-      } else if (stage === 'live') {
-        liveRuntime?.classList.add('active');
-        showToast('Interactive Live Runtime Active');
-      }
-    }
-
-    // Pointer Events for desktop & mobile
-    function startDrag(e) {
-      // Don't drag if clicking interactive controls inside live view or buttons
-      if (e.target.closest('button') || e.target.closest('input')) return;
-
-      isDragging = true;
-      splitContainer.classList.add('is-dragging');
-      splitContainer.classList.remove('split-animated');
-      liveRuntime?.classList.remove('active');
-      setActiveTab('split');
-
-      try {
-        splitDivider.setPointerCapture(e.pointerId);
-      } catch (err) {}
-
-      setSplitPosition(e.clientX, false);
-    }
-
-    function moveDrag(e) {
-      if (!isDragging) return;
-      e.preventDefault();
-      setSplitPosition(e.clientX, false);
-    }
-
-    function stopDrag(e) {
-      if (!isDragging) return;
-      isDragging = false;
-      splitContainer.classList.remove('is-dragging');
-      try {
-        splitDivider.releasePointerCapture(e.pointerId);
-      } catch (err) {}
-    }
-
-    // Bind pointer events on divider AND container
-    splitDivider.addEventListener('pointerdown', startDrag);
-    splitContainer.addEventListener('pointerdown', startDrag);
-    window.addEventListener('pointermove', moveDrag);
-    window.addEventListener('pointerup', stopDrag);
-    window.addEventListener('pointercancel', stopDrag);
-
-    // Fallback touch events for older mobile browsers
-    splitContainer.addEventListener('touchstart', (e) => {
-      if (e.touches.length > 0) {
-        isDragging = true;
-        splitContainer.classList.add('is-dragging');
-        splitContainer.classList.remove('split-animated');
-        liveRuntime?.classList.remove('active');
-        setActiveTab('split');
-        setSplitPosition(e.touches[0].clientX, false);
-      }
-    }, { passive: true });
-
-    window.addEventListener('touchmove', (e) => {
-      if (!isDragging || e.touches.length === 0) return;
-      setSplitPosition(e.touches[0].clientX, false);
-    }, { passive: true });
-
-    window.addEventListener('touchend', () => {
-      isDragging = false;
-      splitContainer.classList.remove('is-dragging');
     });
+  }
 
-    // 4-Stage Tabs Click Handlers
+  // Global function called when range slider is dragged (desktop or touch)
+  window.onSplitRangeInput = function(value) {
+    if (splitContainer) {
+      splitContainer.classList.remove('split-animated');
+    }
+    if (liveRuntime) {
+      liveRuntime.classList.remove('active');
+    }
+    setActiveTab('split');
+    updateVisualSplit(value);
+  };
+
+  // Global function called when clicking any of the 4 stage buttons
+  window.switchSplitStage = function(stage) {
+    setActiveTab(stage);
+
+    if (stage === 'design') {
+      if (liveRuntime) liveRuntime.classList.remove('active');
+      if (splitContainer) splitContainer.classList.add('split-animated');
+      updateVisualSplit(100);
+      showToast('Viewing Design Layout');
+    } else if (stage === 'code') {
+      if (liveRuntime) liveRuntime.classList.remove('active');
+      if (splitContainer) splitContainer.classList.add('split-animated');
+      updateVisualSplit(0);
+      showToast('Viewing Frontend Code');
+    } else if (stage === 'split') {
+      if (liveRuntime) liveRuntime.classList.remove('active');
+      if (splitContainer) splitContainer.classList.add('split-animated');
+      updateVisualSplit(50);
+      showToast('Drag divider to compare Design vs Code');
+    } else if (stage === 'live') {
+      if (liveRuntime) liveRuntime.classList.add('active');
+      showToast('Interactive Live Runtime Active');
+    }
+  };
+
+  // Also bind click events on stage tabs for standard listener redundancy
+  if (stageTabs) {
     stageTabs.forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        e.stopPropagation();
         const stage = btn.dataset.stage;
-        applyStage(stage);
+        window.switchSplitStage(stage);
       });
     });
   }
@@ -391,6 +329,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- 6. INITIAL RENDER ---
   renderProjects(data.projects);
+
+  if (window.__pendingStage) {
+    window.switchSplitStage(window.__pendingStage);
+  }
 
   console.log("Ahamed Muflih Portfolio loaded successfully.");
 });
