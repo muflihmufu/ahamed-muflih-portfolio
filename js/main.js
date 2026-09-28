@@ -4,10 +4,9 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const data = window.PORTFOLIO_DATA;
+  const data = window.PORTFOLIO_DATA || (typeof PORTFOLIO_DATA !== 'undefined' ? PORTFOLIO_DATA : null);
   if (!data) {
     console.error("Portfolio data not found. Please ensure data.js is loaded.");
-    return;
   }
 
   // --- 1. TOAST NOTIFICATION UTILITY ---
@@ -241,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateVisualSplit(percent) {
     if (!splitDivider || !codeSide) return;
-    const clamped = Math.max(0, Math.min(100, parseFloat(percent)));
+    const clamped = Math.max(4, Math.min(96, parseFloat(percent)));
     splitDivider.style.left = `${clamped}%`;
     codeSide.style.width = `${100 - clamped}%`;
     if (rangeSlider) rangeSlider.value = clamped;
@@ -266,36 +265,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if (liveRuntime) {
       liveRuntime.classList.remove('active');
     }
-    setActiveTab('split');
-    updateVisualSplit(value);
+    const numVal = parseFloat(value);
+    if (numVal >= 50) {
+      setActiveTab('design');
+    } else {
+      setActiveTab('code');
+    }
+    updateVisualSplit(numVal);
   };
 
-  // Global function called when clicking any of the 4 stage buttons
+  // Global function called when clicking any of the 3 stage buttons
   window.switchSplitStage = function(stage) {
     setActiveTab(stage);
 
     if (stage === 'design') {
       if (liveRuntime) liveRuntime.classList.remove('active');
       if (splitContainer) splitContainer.classList.add('split-animated');
-      updateVisualSplit(100);
-      showToast('Viewing Design Layout');
+      updateVisualSplit(92);
+      showToast('Viewing Design Layout — drag handle to reveal code');
     } else if (stage === 'code') {
       if (liveRuntime) liveRuntime.classList.remove('active');
       if (splitContainer) splitContainer.classList.add('split-animated');
-      updateVisualSplit(0);
-      showToast('Viewing Frontend Code');
-    } else if (stage === 'split') {
-      if (liveRuntime) liveRuntime.classList.remove('active');
-      if (splitContainer) splitContainer.classList.add('split-animated');
-      updateVisualSplit(50);
-      showToast('Drag divider to compare Design vs Code');
+      updateVisualSplit(8);
+      showToast('Viewing Frontend Code — drag handle to reveal design');
     } else if (stage === 'live') {
       if (liveRuntime) liveRuntime.classList.add('active');
       showToast('Interactive Live Runtime Active');
     }
   };
 
-  // Also bind click events on stage tabs for standard listener redundancy
+  // Also bind click events on stage tabs
   if (stageTabs) {
     stageTabs.forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -328,7 +327,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- 6. INITIAL RENDER ---
-  renderProjects(data.projects);
+  if (data && data.projects) {
+    renderProjects(data.projects);
+  }
 
   if (window.__pendingStage) {
     window.switchSplitStage(window.__pendingStage);

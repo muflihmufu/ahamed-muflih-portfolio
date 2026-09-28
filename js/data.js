@@ -658,6 +658,9 @@ const PORTFOLIO_DATA = {
 };
 
 // Make available globally and for modules
+if (typeof window !== 'undefined') {
+  window.PORTFOLIO_DATA = PORTFOLIO_DATA;
+}
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = PORTFOLIO_DATA;
 }
