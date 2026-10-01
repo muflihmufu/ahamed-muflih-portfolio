@@ -117,8 +117,8 @@ const PORTFOLIO_DATA = {
       },
       {
         name: "Instagram",
-        url: "https://www.instagram.com/muflih.creatives",
-        handle: "@muflih.creatives",
+        url: "https://www.instagram.com/muflih_kambar",
+        handle: "@muflih_kambar",
         icon: "instagram"
       },
       {
