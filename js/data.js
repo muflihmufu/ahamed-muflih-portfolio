@@ -111,8 +111,8 @@ const PORTFOLIO_DATA = {
     socials: [
       {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/in/ahamed-muflih",
-        handle: "ahamed-muflih",
+        url: "https://www.linkedin.com/in/ahamed-muflih-896003218?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
+        handle: "ahamed-muflih-896003218",
         icon: "linkedin"
       },
       {
@@ -120,12 +120,6 @@ const PORTFOLIO_DATA = {
         url: "https://www.instagram.com/muflih_kambar",
         handle: "@muflih_kambar",
         icon: "instagram"
-      },
-      {
-        name: "Behance",
-        url: "https://www.behance.net/ahamedmuflih",
-        handle: "ahamedmuflih",
-        icon: "behance"
       },
       {
         name: "ArtStation",
